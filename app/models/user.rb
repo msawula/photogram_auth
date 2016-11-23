@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
          has_many :likes
          has_many :liked_photos, :through => :likes, :source => :photo
 
-         validates :username, :presence => true, 
+         validates :username, :presence => true, :uniqueness => true
 end
