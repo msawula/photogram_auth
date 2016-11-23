@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h2>
+    All Users
+  </h2>
+</div>
+
+<table class = "table table-hover">
+
+  <tbody>
+<% @users.each do |users| %>
+<tr>
+  <td><%= users.username %></td>
+</tr>
+</tbody>
+<% end %>
+</table>

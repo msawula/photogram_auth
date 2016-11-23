@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h3><%= @user.username %> Photo Collection </h3>
+
+</div>
+
+<%= @user.photos.each do |photo| %>
+
+<img src = "<%= photo.image %>">
+
+<% end %>
