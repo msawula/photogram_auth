@@ -1,7 +1,9 @@
 <div class="panel panel-default" style="width: 50%" >
   <div class="panel-heading" >
+    <div class="form-group" >
     <h2 class="panel-title">Log in</h2>
   </div>
+    </div>
 
 <div class="panel-body" >
 
@@ -10,6 +12,12 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
 
   <div class="field">
     <%= f.label :password %><br />
