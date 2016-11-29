@@ -7,10 +7,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @users = Users.find(params[:id])
 
 @user = User.find(params[:id])
     render("users/show.html.erb")
+
   end
 
 end
