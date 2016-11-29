@@ -5,7 +5,7 @@
 </div>
 
 
-      <% @photos.each do |photo| %>
+<% @photos.each do |photo| %>
 <div class="panel panel-default" style="width: 50%" >
   <div class="panel-heading" ><%= photo.user.username %><%= time_ago_in_words(photo.created_at) %> ago
     <h3 class="panel-title" style="width: 50%"> </h3>
@@ -13,41 +13,45 @@
   <div class="panel-body" style="width: 50%">
     <div >
 
-  <div >
-      <div><%= photo.caption %></div>
+      <div >
+        <div><%= photo.caption %></div>
         <a href="/photos/<%= photo.id %>"><img src = "<%= photo.image %>" width="400" height="400"></a>
 
-<ul>
-<% photo.comments.each do |comment| %>
-<li class="media">
-  <a href="/users/<%=photo.user_id %>"> <%= comment.user.username %> </a>
-<small><% time_ago_in_words(Time.now) %></small>
-<%= comment.body %>
-</li>
-  <% end %>
-</ul>
 
-</div>
+
+
+        <ul>
+          <% photo.comments.each do |comment| %>
+          <li class="media">
+            <a href="/users/<%=photo.user_id %>"> <%= comment.user.username %> </a>
+            <% time_ago_in_words(photo.created_at) %>
+            <div><%= comment.body %></div>
+          </li>
+          <% end %>
+        </ul>
+        <form action="/create_comment" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="form_authenticity_token">
+
+          <input type="hidden" name="photo_id" value="<%= photo.id %>">
+
+          <input type="hidden" name="user_id" value="<%= photo.user_id %>">
+
+          <!-- Label and input for body -->
+          <div class="form-group">
+            <label for="body" class="sr-only">
+              Body
+            </label>
+
+            <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" required>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
 </div>
 
-<form action="/create_comment" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="form_authenticity_token">
 
-      <input type="hidden" name="photo_id" value="<%= photo.id %>">
 
-      <input type="hidden" name="user_id" value="<%= photo.user_id %>">
-
-      <!-- Label and input for body -->
-      <div class="form-group">
-        <label for="body" class="sr-only">
-          Body
-        </label>
-
-        <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" required>
-      </div>
-    </form>
-
-  <% end %>
+<% end %>
