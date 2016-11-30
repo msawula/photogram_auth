@@ -17,7 +17,38 @@
         <div><%= photo.caption %></div>
         <a href="/photos/<%= photo.id %>"><img src = "<%= photo.image %>" width="400" height="400"></a>
 
+        <div class="btn-group btn-group-justified">
+          <a href="/likes/new" class="fa fa-heart">
+            Like
+          </a>
+        </div>
+        <div class="btn-group btn-group-justified">
+          <a href="/delete_like/<%= photo.id %>" class="fa fa-heart-o">
+            Delete like
+          </a>
+        </div>
+        
+        <% if (current_user.id == photo.user_id) %>
+      <div class="btn-group btn-group-justified">
+        <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/photos" class="btn btn-primary">
+          Back
+        </a>
 
+        <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+          </div>
+        <% else %>
+        <div class="btn-group btn-group-justified">
+          <a href="/photos" class="btn btn-primary">
+            Back
+          </a>
+            </div>
+
+        <% end %>
 
 
         <ul>
